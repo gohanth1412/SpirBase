@@ -23,9 +23,14 @@ android {
     buildTypes {
         debug {
             isMinifyEnabled = false
+
+            buildConfigField("String", "BASE_URL", "\"http://cms.piontech.site:9123/stores/\"")
         }
         release {
             isMinifyEnabled = false
+
+            buildConfigField("String", "BASE_URL", "\"http://cms.piontech.site:9123/stores/\"")
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -45,6 +50,7 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        buildConfig = true
     }
 }
 
@@ -64,4 +70,16 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+
+    // Auto dimen
+    implementation(libs.autodimension)
+
+    // Retrofit2
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    //Okhttp3
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp3.okhttp)
+    implementation(libs.okhttp3.logging.interceptor)
 }
